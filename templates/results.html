@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Analysis Results</title>
+    <style>
+        .green { color: green; }
+        .yellow { color: orange; }
+        .red { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Analysis Results</h1>
+    <ul>
+        {% for p in predictions %}
+            <li class="{{ p.color }}">
+                {{ p.tagName }} - {{ "%.2f"|format(p.probability * 100) }}%
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/"><button>Upload Another Image</button></a>
+</body>
+</html>
