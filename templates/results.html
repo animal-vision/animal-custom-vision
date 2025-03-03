@@ -6,10 +6,16 @@
         .green { color: green; }
         .yellow { color: orange; }
         .red { color: red; }
+        img { max-width: 400px; display: block; margin: 10px 0; }
     </style>
 </head>
 <body>
     <h1>Analysis Results</h1>
+
+    <!-- Show uploaded image -->
+    <img src="{{ image_url }}" alt="Uploaded Image">
+
+     <!-- Show predictions with color coding -->
     <ul>
         {% for p in predictions %}
             <li class="{{ p.color }}">
