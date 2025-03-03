@@ -4,12 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Analysis</title>
+    <style>
+        img {
+            max-width: 400px; 
+            display: block; 
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Upload an Image for Analysis</h1>
+
+    <!-- Image preview (hidden at first) -->
+    <img id="preview" src="#" alt="Image Preview" style="display: none;">
+
+     <!-- Upload form -->
     <form action="/analyse" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" required>
+        <input type="file" name="image" id="imageInput" required>
         <button type="submit">Analyse</button>
     </form>
+
+    <script>
+        document.getElementById("imageInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById("preview");
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
 </html>
