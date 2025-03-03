@@ -47,8 +47,29 @@ def analyse():
 
     predictions = response.json().get("predictions", [])
 
+    # Filter out tags with low confidence scores
+    THRESHOLD = 50  # show only predictions above 50%
+    filtered_predictions = [
+        p for p in predictions if p["probability"] * 100 >= THRESHOLD
+    ]
+
+    # Remove duplicates & keep only highest probability for each tag
+    unique_predictions = {}
+    for p in filtered_predictions:
+        tag = p["tagName"]
+        probability = p["probability"]
+
+        if tag not in unique_predictions or probability > unique_predictions[tag]["probability"]:
+            unique_predictions[tag] = {
+                "tagName": tag,
+                "probability": probability
+            }
+
+    # Change dictionary back to a list
+    final_predictions = list(unique_predictions.values())
+
     # Add colour coding based on confidence levels
-    for p in predictions:
+    for p in final_predictions:
         if p["probability"] > 0.8:
             p["color"] = "green"
         elif p["probability"] > 0.5:
@@ -56,7 +77,8 @@ def analyse():
         else:
             p["color"] = "red"
 
-    return render_template("results.html", predictions=predictions, image_url=url_for("static", filename=f"uploads/{image.filename}"))
+    return render_template("results.html", predictions=final_predictions,
+                           image_url=url_for("static", filename=f"uploads/{image.filename}"))
 
 if __name__ == "__main__":
     app.run(debug=True)
