@@ -1,57 +1,25 @@
-<p align="center">
-  <a href="https://getstisla.com">
-    <img src="https://avatars2.githubusercontent.com/u/45754626?s=75&v=4" alt="Stisla logo" width="75" height="75">
-  </a>
-</p>
+# Animal Custom Vision
 
-<h1 align="center">Stisla for Flask</h1>
+## Commit, Comment, Branch, & Pull Request Guidelines
 
-<p align="center">
-  Stisla is Free Bootstrap Admin Template and will help you to speed up your project, design your own dashboard UI and the users will love it.
-</p>
+- Please refer to CONTRIBUTING.md
 
-[![Stisla Preview](https://camo.githubusercontent.com/2135e0f6544a7286a3412cdc3df32d47fc91b045/68747470733a2f2f692e6962622e636f2f3674646d6358302f323031382d31312d31312d31352d33352d676574737469736c612d636f6d2e706e67)](https://getstisla.com)
+## How to Run:
 
-## Table of contents
+### 1. After cloning, run in VSC terminal (open using Ctrl + J if you have Windows):
 
-- [Link Stisla](#link-stisla)
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#License)
+- cp .env.example .env
+- pip install -r requirements.txt
 
-## Link Stisla
-- Homepage: [getstisla.com](https://getstisla.com)
-- Repository: [github.com/stisla/stisla](https://github.com/stisla/stisla)
-- Documentation: [getstisla.com/docs](https://getstisla.com/docs)
+### 2. Make sure env. file is linked to the Azure Custom Vision model
 
-## Installation
-- clone the repo :
-```
-$ git clone https://github.com/antheiz/stisla-flask
-```
+### 3. Running the website
 
-## Usage
-- Create a Virtual Environment :
- ```
- $ python -m venv Env
- ```
-- Activate a Virtual Environment :
- ```
- $ Env\scripts\activate (for windows)
- $ source Env/bin/activate (for linux)
- ```
-- Install Flask :
- ```
- $ pip install -r requirements.txt
- ```
-- Open folder `stisla-flask`
+- Run **python app.py** in terminal
+- **Ctrl + Click** on the link that appears
 
-- Run the Server 
- ```
- $ python run.py
- ```
-- Open `127.0.0.1:5000` in your Browser
+### To backup your changes:
 
-## License
-
-Stisla is under the [MIT License](LICENSE).
+1. Create a new repository
+2. Run in VSC terminal: git remote add backup your-backup-repo-url
+3. Then: git push --mirror backup (If your backup repo is added and you haven't newly cloned, just use this step)

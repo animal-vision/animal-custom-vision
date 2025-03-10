@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content">
+  <section class="section">
+
+    <!-- Page Header -->
+    <div class="section-header">
+      <h1>Upload an Image for Analysis</h1>
+    </div>
+
+    <!-- Main Body -->
+    <div class="section-body">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center">
+            <!-- Image Preview -->
+            <div class="mb-3">
+              <img src="#" alt="Image Preview" class="animal-image img-fluid d-none border rounded shadow-lg">
+            </div>
+
+            <!-- Upload Form -->
+            <div class="card p-4 bg-light">
+              <form action="/analyse" method="post" enctype="multipart/form-data">
+                <input type="file" name="image" id="imageInput" required class="form-control mb-3">
+                <button type="submit" class="btn btn-primary">Analyse</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  document.getElementById("imageInput").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const preview = document.getElementsByClassName("animal-image")[0];
+        preview.src = e.target.result;
+        preview.classList.remove("d-none");
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+{% endblock %}

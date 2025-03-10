@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content">
+  <section class="section">
+
+    <!-- Page Header -->
+    <div class="section-header">
+      <h1>Analysis Results</h1>
+    </div>
+
+    <div class="section-body">
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+
+          <!-- Show uploaded image -->
+          <div class="mb-3">
+            <img class="animal-image"src="{{ image_url }}" alt="Uploaded Image" class="img-fluid border rounded shadow">
+          </div>
+
+          <!-- Show predictions with color coding -->
+          <div class="card p-3 bg-light">
+            <h4 class="mb-3">Predictions</h4>
+            <ul class="list-group">
+              {% for p in predictions %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ p.tagName }}</span>
+                <span class="badge badge-pill text-white" style="background-color: {{ p.color }}">
+                  {{ "%.2f"|format(p.probability * 100) }}%
+                </span>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- Upload another image button -->
+          <a href="/" class="btn btn-primary mt-4">Upload Another Image</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+{% endblock %}
