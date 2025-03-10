@@ -6,6 +6,7 @@
 ## How to Run:
 ### 1. After cloning, run in VSC terminal (open using Ctrl + J if you have Windows):
 - cp .env.example .env
+- pip install -r requirements.txt
 
 ### 2. Make sure env. file is linked to the Azure Custom Vision model
 
