@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Flask Stisla</title>
+  <title>Image Analysis</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -32,11 +32,6 @@
           <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
           <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
         </ul>
-        <div class="search-element">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
-          <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-          <div class="search-backdrop"></div>
-        </div>
       </form>
       <ul class="navbar-nav navbar-right">
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
@@ -92,22 +87,26 @@
   <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="#">Stisla</a>
+            <a href="#">Elanco</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="#">St</a>
+            <a href="#">EL</a>
         </div>
-        <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
-            <li class="nav-item dropdown active">
-                <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                </li>
-        </ul>
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-            </a>
-        </div>
+          <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+              <i class="fa-solid fa-bars-progress"></i> Dashboard
+          </a>
+      </div>
+      <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+        <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+          <i class="fa-solid fa-images"></i> Upload & Analyse
+        </a>
+      </div>
+      <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+        <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+          <i class="fa-solid fa-circle-question"></i> User Guide & FAQ 
+        </a>
+      </div>
     </aside>
   </div>
   {% endblock sidebar %}
@@ -144,8 +143,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="{{ url_for ('static', filename='assets/js/stisla.js') }}"></script>
-
-
+  <script src="https://kit.fontawesome.com/730b430e7b.js" crossorigin="anonymous"></script>
+  
   <!-- Template JS File -->
   <script src="{{ url_for ('static', filename='assets/js/scripts.js') }}"></script>
   <script src="{{ url_for ('static', filename='assets/js/custom.js') }}"></script>
