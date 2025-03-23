@@ -2,6 +2,7 @@ import os
 import requests
 from flask import Flask, render_template, request, url_for
 from dotenv import load_dotenv
+from main.routes import main
 
 # Load API keys from .env file
 load_dotenv()
@@ -11,6 +12,8 @@ PREDICTION_KEY = os.getenv("PREDICTION_KEY")
 app = Flask(__name__)
 UPLOAD_FOLDER = "app/static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+app.register_blueprint(main)
 
 # See if upload folder exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)

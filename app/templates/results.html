@@ -15,15 +15,27 @@
 
           <!-- Show uploaded image -->
           <div class="mb-3">
-            <img class="animal-image"src="{{ image_url }}" alt="Uploaded Image" class="img-fluid border rounded shadow">
+            <img class="animal-image" src="{{ image_url }}" alt="Uploaded Image" class="img-fluid border rounded shadow">
           </div>
 
-          <!-- Show predictions with color coding -->
+          <!-- Show predictions with color coding and icons -->
           <div class="card p-3 bg-light">
             <h4 class="mb-3">Predictions</h4>
             <ul class="list-group">
               {% for p in predictions %}
               <li class="list-group-item d-flex justify-content-between align-items-center">
+                <!-- Dictionary -->
+                {% set icon_map = {
+                  'eating': 'fa-utensils',
+                  'sleeping': 'fa-bed',
+                  'playing': 'fa-gamepad',
+                  'walking': 'fa-walking',
+                  'running': 'fa-person-running',
+                  'scratching': 'fa-paw',
+                  'swimming': 'fa-swimmer'
+                } %}
+                <i class="fas {{ icon_map.get(p.tagName, 'fa-question-circle') }}" style="color: {{ p.color }};"></i>
+
                 <span>{{ p.tagName }}</span>
                 <span class="badge badge-pill text-white" style="background-color: {{ p.color }}">
                   {{ "%.2f"|format(p.probability * 100) }}%
