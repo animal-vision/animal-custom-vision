@@ -2,7 +2,7 @@ import os
 import requests
 from flask import Flask, render_template, request, url_for
 from dotenv import load_dotenv
-from .main.routes import main
+from main.routes import main
 
 # Load API keys from .env file
 load_dotenv()
@@ -15,10 +15,10 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 app.register_blueprint(main)
 
-# See if upload folder exists
+# Ensure the upload folder exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Homepage - upload image
+# Homepage
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -27,11 +27,19 @@ def home():
 @app.route("/analyse", methods=["POST"])
 def analyse():
     if "image" not in request.files:
-        return "No image uploaded", 400
+        return render_template("index.html", error="No image uploaded.")
 
     image = request.files["image"]
+    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+
+    def allowed_file(filename):
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
     if image.filename == "":
-        return "No selected file", 400
+        return render_template("index.html", error="No file selected.")
+
+    if not allowed_file(image.filename):
+        return render_template("index.html", error="Unsupported file type. Please upload a PNG, JPG, or GIF.")
 
     # Save image to static/uploads folder
     image_path = os.path.join(app.config["UPLOAD_FOLDER"], image.filename)
@@ -51,7 +59,7 @@ def analyse():
     predictions = response.json().get("predictions", [])
 
     # Filter out tags with low confidence scores
-    THRESHOLD = 50  # show only predictions above 50%
+    THRESHOLD = 50
     filtered_predictions = [
         p for p in predictions if p["probability"] * 100 >= THRESHOLD
     ]
@@ -80,8 +88,14 @@ def analyse():
         else:
             p["color"] = "red"
 
-    return render_template("results.html", predictions=final_predictions,
-                           image_url=url_for("static", filename=f"uploads/{image.filename}"))
+    no_tags_found = len(final_predictions) == 0
+
+    return render_template(
+        "results.html",
+        predictions=final_predictions,
+        image_url=url_for("static", filename=f"uploads/{image.filename}"),
+        no_tags_found=no_tags_found
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
