@@ -2,7 +2,7 @@ import os
 import requests
 from flask import Flask, render_template, request, url_for
 from dotenv import load_dotenv
-from main.routes import main
+from .main.routes import main # Remove the dot at the beginning of .main.routes to main.routes for local deployment hosting
 
 # Load API keys from .env file
 load_dotenv()
