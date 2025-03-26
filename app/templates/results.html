@@ -13,12 +13,26 @@
       <div class="row justify-content-center">
         <div class="col-md-8 text-center">
 
+          <!-- css override -->
+          <style>
+            .list-group-item {
+              font-size: 1.25rem; /* text */
+            }
+
+            .list-group-item i {
+              font-size: 1.5rem; /* icons */
+            }
+
+            .badge {
+              font-size: 1.1rem; 
+            }
+          </style>
+
           <!-- Show uploaded image -->
-          <div class="mb-3">
+          <div class="d-flex justify-content-center mb-3">
             <img class="animal-image" src="{{ image_url }}" alt="Uploaded Image" class="img-fluid border rounded shadow">
           </div>
 
-          <!-- Show predictions with color coding and icons -->
           <div class="card p-3 bg-light">
             <h4 class="mb-3">Predictions</h4>
             <ul class="list-group">
