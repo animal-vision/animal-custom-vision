@@ -7,3 +7,4 @@ Werkzeug==2.2.1
 requests
 gunicorn
 python-dotenv
+azure-storage-blob
