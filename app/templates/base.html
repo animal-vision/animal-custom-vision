@@ -65,37 +65,48 @@
 
   
   {% block sidebar %}
-  <div class="main-sidebar">
-    <aside id="sidebar-wrapper">
-        <div class="sidebar-brand">
-            <a href="#">Elanco</a>
-        </div>
-        <div class="sidebar-brand sidebar-brand-sm">
-            <a href="#">EL</a>
-        </div>
-        <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-          <a href="/dashboard" class="btn btn-primary btn-lg btn-block btn-icon-split">
-              <i class="fa-solid fa-bars-progress"></i> Dashboard
-          </a>
+<div class="main-sidebar">
+  <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+          <a href="#">Elanco</a>
       </div>
+      <div class="sidebar-brand sidebar-brand-sm">
+          <a href="#">EL</a>
+      </div>
+
+      <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+        <a href="/dashboard" class="btn btn-primary btn-lg btn-block btn-icon-split">
+            <i class="fa-solid fa-bars-progress"></i> Dashboard
+        </a>
+      </div>
+
       <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
         <a href="/" class="btn btn-primary btn-lg btn-block btn-icon-split">
           <i class="fa-solid fa-images"></i> Upload & Analyse
         </a>
       </div>
+
       <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-        <a href="/guide" class="btn btn-primary btn-lg btn-block btn-icon-split">
-          <i class="fa-solid fa-file"></i>User Guide
+        <a href="/history" class="btn btn-primary btn-lg btn-block btn-icon-split">
+          <i class="fa-solid fa-clock-rotate-left"></i> History
         </a>
       </div>
+
+      <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+        <a href="/guide" class="btn btn-primary btn-lg btn-block btn-icon-split">
+          <i class="fa-solid fa-file"></i> User Guide
+        </a>
+      </div>
+
       <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
         <a href="/faq" class="btn btn-primary btn-lg btn-block btn-icon-split">
           <i class="fa-solid fa-circle-question"></i> FAQ
         </a>
       </div>
-    </aside>
-  </div>
-  {% endblock sidebar %}
+  </aside>
+</div>
+{% endblock sidebar %}
+
     
     
 

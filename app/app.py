@@ -1,12 +1,13 @@
 import os
 import requests
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
-from main.routes import main  # Remove the dot at the beginning of .main.routes to main.routes for local deployment hosting
+from main.routes import main
 from azure.storage.blob import BlobServiceClient
 from datetime import datetime
+from urllib.parse import urlparse
 
-# Load API keys from .env file
+# Load API keys from .env
 load_dotenv()
 AZURE_URL = os.getenv("AZURE_URL")
 PREDICTION_KEY = os.getenv("PREDICTION_KEY")
@@ -18,11 +19,9 @@ UPLOAD_FOLDER = "app/static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 app.register_blueprint(main)
-
-# Ensure the upload folder exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Helper: Upload to Azure Blob Storage
+# Upload to Azure Blob
 def upload_to_blob(image):
     blob_service = BlobServiceClient.from_connection_string(AZURE_BLOB_CONN)
     container_client = blob_service.get_container_client(AZURE_CONTAINER)
@@ -32,12 +31,48 @@ def upload_to_blob(image):
 
     return f"https://{blob_service.account_name}.blob.core.windows.net/{AZURE_CONTAINER}/{blob_name}"
 
-# Homepage
+# Home
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# Handle image upload & API call
+# Upload History
+@app.route("/history")
+def history():
+    try:
+        blob_service = BlobServiceClient.from_connection_string(AZURE_BLOB_CONN)
+        container_client = blob_service.get_container_client(AZURE_CONTAINER)
+
+        blob_urls = []
+        for blob in container_client.list_blobs():
+            blob_url = f"https://{blob_service.account_name}.blob.core.windows.net/{AZURE_CONTAINER}/{blob.name}"
+            blob_urls.append(blob_url)
+
+        return render_template("history.html", images=blob_urls)
+
+    except Exception as e:
+        return render_template("history.html", error=f"Error loading history: {str(e)}")
+
+# Delete Image
+@app.route("/delete", methods=["POST"])
+def delete_image():
+    image_url = request.form.get("image_url")
+    if not image_url:
+        return redirect("/history")
+
+    try:
+        parsed_url = urlparse(image_url)
+        blob_name = parsed_url.path.split("/")[-1]
+
+        blob_service = BlobServiceClient.from_connection_string(AZURE_BLOB_CONN)
+        container_client = blob_service.get_container_client(AZURE_CONTAINER)
+        container_client.delete_blob(blob_name)
+    except Exception as e:
+        return render_template("history.html", error=f"Failed to delete image: {str(e)}")
+
+    return redirect("/history")
+
+# Analyse Route
 @app.route("/analyse", methods=["POST"])
 def analyse():
     if "image" not in request.files:
@@ -61,7 +96,7 @@ def analyse():
     except Exception as e:
         return render_template("index.html", error=f"Azure upload failed: {str(e)}")
 
-    # Rewind the file pointer to the beginning
+    # Rewind file for prediction
     image.stream.seek(0)
 
     headers = {
@@ -75,8 +110,7 @@ def analyse():
         return f"Error: {response.text}", response.status_code
 
     predictions = response.json().get("predictions", [])
-    
-    # Define descriptions 
+
     descriptions = {
         "excessive sleep": "Potential issues include fatigue, depression, or physical discomfort.",
         "skin condition": "Possible conditions include allergies, dermatitis, or fungal infections.",
@@ -86,33 +120,27 @@ def analyse():
         "back condition": "Possible concerns include arthritis, spinal issues, or muscular strain that affects mobility.",
     }
 
-    # Filter predictions above threshold
     THRESHOLD = 50
-    filtered_predictions = [
-        p for p in predictions if p["probability"] * 100 >= THRESHOLD
-    ]
+    filtered_predictions = [p for p in predictions if p["probability"] * 100 >= THRESHOLD]
 
-    # Remove duplicates, keep highest
     unique_predictions = {}
     for p in filtered_predictions:
         tag = p["tagName"]
-        probability = p["probability"]
-        if tag not in unique_predictions or probability > unique_predictions[tag]["probability"]:
-            unique_predictions[tag] = {"tagName": tag, "probability": probability}
+        prob = p["probability"]
+        if tag not in unique_predictions or prob > unique_predictions[tag]["probability"]:
+            unique_predictions[tag] = {"tagName": tag, "probability": prob}
 
     final_predictions = list(unique_predictions.values())
 
     for p in final_predictions:
-        if p["probability"] > 0.8:
-            p["color"] = "green"
-        elif p["probability"] > 0.5:
-            p["color"] = "orange"
-        else:
-            p["color"] = "red"
+        p["color"] = (
+            "green" if p["probability"] > 0.8 else
+            "orange" if p["probability"] > 0.5 else
+            "red"
+        )
 
     no_tags_found = len(final_predictions) == 0
 
-    #Add descriptions to predicitions
     for p in final_predictions:
         p["description"] = descriptions.get(p["tagName"].lower(), "No additional information available.")
 
