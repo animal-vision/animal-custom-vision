@@ -11,11 +11,17 @@
 
     <div class="section-body">
       <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
+        <div class="col-md-10 text-center">
 
-          <!-- css override -->
+          <!-- CSS Overrides -->
           <style>
             .list-group-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              flex-wrap: wrap;
+              padding: 1rem;
+              gap: 10px;
               font-size: 1.25rem; /* text */
             }
 
@@ -26,40 +32,67 @@
             .badge {
               font-size: 1.1rem; 
             }
+            /* styling for description content */
+            .list-group-item .description{
+              flex: 1;
+              margin-top: 15px;
+              text-align: center;
+              font-size: 1.2rem;
+              color: #6c757d;
+            }
+            /* mobile-view adjustment for description */
+            @media (max-width: 768px) {
+              .list-group-item {
+                flex-direction: column;
+                align-items: flex-start;
+              }
+              .list-group-item .description {
+                margin-top: 12px;
+                text-align: center;
+                font-size: 1.2rem ;
+              }
+            }
           </style>
 
           <!-- Show uploaded image -->
           <div class="d-flex justify-content-center mb-3">
-            <img class="animal-image" src="{{ image_url }}" alt="Uploaded Image" class="img-fluid border rounded shadow">
+            <img class="animal-image img-fluid border rounded shadow" src="{{ image_url }}" alt="Uploaded Image">
           </div>
 
+          <!-- Predictions Section -->
           <div class="card p-3 bg-light">
             <h4 class="mb-3">Predictions</h4>
-            <ul class="list-group">
-              {% for p in predictions %}
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <!-- Dictionary -->
-                {% set icon_map = {
-                  'eating': 'fa-utensils',
-                  'sleeping': 'fa-bed',
-                  'playing': 'fa-gamepad',
-                  'walking': 'fa-walking',
-                  'running': 'fa-person-running',
-                  'scratching': 'fa-paw',
-                  'swimming': 'fa-swimmer'
-                } %}
-                <i class="fas {{ icon_map.get(p.tagName, 'fa-question-circle') }}" style="color: {{ p.color }};"></i>
 
-                <span>{{ p.tagName }}</span>
-                <span class="badge badge-pill text-white" style="background-color: {{ p.color }}">
-                  {{ "%.2f"|format(p.probability * 100) }}%
-                </span>
-              </li>
-              {% endfor %}
-            </ul>
+            {% if no_tags_found %}
+              <div class="alert alert-info text-center mb-0" role="alert">
+                No tags were found above the confidence threshold.
+              </div>
+            {% else %}
+              <ul class="list-group">
+                {% for p in predictions %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {% set icon_map = {
+                      'eating': 'fa-utensils',
+                      'sleeping': 'fa-bed',
+                      'playing': 'fa-gamepad',
+                      'walking': 'fa-walking',
+                      'running': 'fa-person-running',
+                      'scratching': 'fa-paw',
+                      'swimming': 'fa-swimmer'
+                    } %}
+                    <i class="fas {{ icon_map.get(p.tagName, 'fa-question-circle') }}" style="color: {{ p.color }};"></i>
+                    <span>{{ p.tagName }}</span>
+                    <span class="badge badge-pill text-white" style="background-color: {{ p.color }}">
+                      {{ "%.2f"|format(p.probability * 100) }}%
+                    </span>
+                    <p class="description">{{ p.description }}</p>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </div>
 
-          <!-- Upload another image button -->
+          <!-- Upload Another Image Button -->
           <a href="/" class="btn btn-primary mt-4">Upload Another Image</a>
         </div>
       </div>

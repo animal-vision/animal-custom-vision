@@ -11,7 +11,9 @@
 ## Tech Stack
 - **Backend**: Python, Flask  
 - **Frontend**: HTML, CSS, Bootstrap  
-- **AI/ML**: Azure Custom Vision  
+- **AI/ML**: Azure Custom Vision
+- **Cloud Storage**: Azure Blob Storage
+- **Deployment**: Render
 - **Environment**: Visual Studio Code, Python 3.13  
 - **Version Control**: Git & GitHub
 
@@ -49,7 +51,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-### 5. Make sure `.env` file is linked to the Azure Custom Vision model
+### 5. Make sure `.env` file is linked to the Azure Custom Vision model & Azure Blob Storage
 
 ### 6. Running the website
 - Run **python app/app.py** in terminal
