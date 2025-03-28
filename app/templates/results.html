@@ -16,11 +16,11 @@
           <!-- css override -->
           <style>
             .list-group-item {
-              font-size: 1.25rem; /* text */
+              font-size: 1.25rem; 
             }
 
             .list-group-item i {
-              font-size: 1.5rem; /* icons */
+              font-size: 1.5rem; 
             }
 
             .badge {
@@ -40,13 +40,12 @@
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <!-- Dictionary -->
                 {% set icon_map = {
-                  'eating': 'fa-utensils',
-                  'sleeping': 'fa-bed',
-                  'playing': 'fa-gamepad',
-                  'walking': 'fa-walking',
-                  'running': 'fa-person-running',
-                  'scratching': 'fa-paw',
-                  'swimming': 'fa-swimmer'
+                  'Back condition': 'fa-spine',
+                  'Excessive sleep': 'fa-moon',
+                  'Eye condition': 'fa-eye',
+                  'Limping': 'fa-crutch',
+                  'Skin condition': 'fa-allergies',
+                  'Scratching': 'fa-paw'
                 } %}
                 <i class="fas {{ icon_map.get(p.tagName, 'fa-question-circle') }}" style="color: {{ p.color }};"></i>
 
