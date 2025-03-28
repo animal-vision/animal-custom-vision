@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content">
+  <section class="section">
+
+    <!-- Page Title -->
+    <div class="section-header">
+      <h1>Upload History</h1>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="section-body">
+      {% if error %}
+        <div class="alert alert-danger text-center">
+          {{ error }}
+        </div>
+      {% elif images and images|length > 0 %}
+        <div class="container">
+          <div class="row">
+            {% for image_url in images %}
+              <div class="col-md-4 mb-4 d-flex justify-content-center">
+                <div class="card shadow-sm" style="width: 100%;">
+                  <img src="{{ image_url }}" class="card-img-top rounded" alt="Uploaded Image">
+                  <div class="card-body text-center">
+                    <div class="d-flex justify-content-center gap-2">
+                      <!-- Download Button -->
+                      <a href="{{ image_url }}" class="btn btn-primary btn-sm" download>
+                        <i class="fas fa-download"></i> Download
+                      </a>
+
+                      <!-- Delete Button -->
+                      <form action="/delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="image_url" value="{{ image_url }}">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this image?');">
+                          <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <div class="alert alert-info text-center">
+          No images uploaded yet.
+        </div>
+      {% endif %}
+    </div>
+
+  </section>
+</div>
+{% endblock %}
