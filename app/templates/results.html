@@ -72,13 +72,12 @@
                 {% for p in predictions %}
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     {% set icon_map = {
-                      'eating': 'fa-utensils',
-                      'sleeping': 'fa-bed',
-                      'playing': 'fa-gamepad',
-                      'walking': 'fa-walking',
-                      'running': 'fa-person-running',
-                      'scratching': 'fa-paw',
-                      'swimming': 'fa-swimmer'
+                      'Back condition': 'fa-x-ray',
+                      'Excessive sleep': 'fa-moon',
+                      'Eye condition': 'fa-eye',
+                      'Limping': 'fa-crutch',
+                      'Skin condition': 'fa-allergies',
+                      'Scratching': 'fa-paw'
                     } %}
                     <i class="fas {{ icon_map.get(p.tagName, 'fa-question-circle') }}" style="color: {{ p.color }};"></i>
                     <span>{{ p.tagName }}</span>
