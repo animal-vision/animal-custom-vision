@@ -13,3 +13,7 @@ def dashboard():
 @main.route('/guide')
 def guides():
     return render_template('userguide.html')
+
+@main.route('/faq')
+def faq():
+    return render_template('faq.html')
