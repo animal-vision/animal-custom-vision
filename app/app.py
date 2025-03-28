@@ -75,6 +75,16 @@ def analyse():
         return f"Error: {response.text}", response.status_code
 
     predictions = response.json().get("predictions", [])
+    
+    # Define descriptions 
+    descriptions = {
+        "excessive sleep": "Potential issues include fatigue, depression, or physical discomfort.",
+        "skin condition": "Possible conditions include allergies, dermatitis, or fungal infections.",
+        "eye condition": "Potential issues may involve conjunctivitis, cataracts, or eye infections.",
+        "scratching": "Possible causes include fleas, dermatitis, or fungal infections.",
+        "limping": "Potential problems could be related to joint issues, fractures, soft tissue injuries, or arthritis.",
+        "back condition": "Possible concerns include arthritis, spinal issues, or muscular strain that affects mobility.",
+    }
 
     # Filter predictions above threshold
     THRESHOLD = 50
@@ -101,6 +111,10 @@ def analyse():
             p["color"] = "red"
 
     no_tags_found = len(final_predictions) == 0
+
+    #Add descriptions to predicitions
+    for p in final_predictions:
+        p["description"] = descriptions.get(p["tagName"].lower(), "No additional information available.")
 
     return render_template(
         "results.html",
