@@ -14,6 +14,7 @@
 - **AI/ML**: Azure Custom Vision
 - **Cloud Storage**: Azure Blob Storage
 - **Deployment**: Render
+- **Testing**: WAVE Evaluation, Lighthouse
 - **Environment**: Visual Studio Code, Python 3.13  
 - **Version Control**: Git & GitHub
 
