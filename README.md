@@ -55,6 +55,7 @@ cp .env.example .env
 ### 5. Make sure `.env` file is linked to the Azure Custom Vision model & Azure Blob Storage
 
 ### 6. Running the website
+- Ensure the `.` before `main` in `.main.routes import main` is removed (app/app.py line 5)
 - Run **python app/app.py** in terminal
 - **Ctrl + Click** on the link that appears
 
