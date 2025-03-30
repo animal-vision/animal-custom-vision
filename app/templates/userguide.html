@@ -1,57 +1,73 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="main-content">
-        <section class="section">
-            <div class="section-header">
-                <h1>User Guide</h1>
-            </div>
-            <div class="section-body">
-                <div class="row justify-content-center">
-                    <div class="col-md-17">
-                        <div class="card p-3 bg-light user-guide" >
-                            <!-- View  user guide -->
-                            <h4 class="mb-3 text-center"><strong>How to Use the Application</strong></h4>
-                            <div class="section">
-                            <h5>1. Stable Internet Connection</h5>
+<div class="container main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>User Guide</h1>
+        </div>
+        <div class="section-body">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card p-4 bg-light user-guide">
+                        <h4 class="mb-4 text-center"><strong>How to Use the Application</strong></h4>
+                        <div class="card mb-3 p-3 bg-light border border-muted rounded-3 shadow-sm">
+                            <h5><i class="bi bi-wifi"></i> 1. Stable Internet Connection</h5>
                             <ul>
-                                <li>Before Proceeding, ensure you have a reliable internet connection</li>
-                            </ul>
-                            </div>
-                            <div class="section">
-                                <h5>2. Uploading an Image</h5>
-                                <ul>
-                                    <li>To access the image upload page, select “Go to Upload” from the dashboard or select “Upload & Analyse” in the sidebar.</li>
-                                    <li>- On a Desktop Device: click the “Choose File” button, select the image file you wish to upload, and then click &nbsp;&nbsp;“Open.”</li>
-                                    <li>- On a Mobile Device: Tap the “Choose File” button, select one of the options listed. You can either take a photo, &nbsp;&nbsp;upload an image from your photo library, or select a file. After making your selection, tap “Done.”</li>
-                                    <li>Once the upload is complete, an image preview will be displayed.</li>
-                                </ul>
-                            </div>
-                            <div class="section">
-                              <h5>3. Analysing an Image</h5>
-                              <ul>
-                                <li>Click or tap the “Analyse” button located below the image preview</li>
-                                <li>Wait while the system processes the image.</li>
-                                <li>After processing, view the analysis results along with a confidence percentage for each prediction.</li>
-                              </ul>
-                          </div>
-                          <div class="section">
-                            <h5>4. Viewing other pages</h5>
-                            <ul>
-                             <li>You can easily access other pages such as the dashboard, user guide, and FAQ page by clicking the corresponding links in the sidebar.</li>
+                                <li>Before proceeding, ensure you have a reliable internet connection.</li>
                             </ul>
                         </div>
-                            <div class="section">
-                                <h5>5. Tips for Optimal Use</h5>
-                                <ul>
-                                    <li>To achieve the best analysis results, use high-quality images.</li>
-                                    <li>Ensure that your images are in supported formats to avoid any upload errors.</li>
-                                </ul>
-                            </div>
+                        <div class="card mb-3 p-3 bg-light border border-muted rounded-3 shadow-sm">
+                            <h5><i class="bi bi-upload"></i> 2. Uploading an Image</h5>
+                            <ul>
+                                <li>Navigate to the image upload page via “Go to Upload” on the dashboard or “Upload & Analyse” in the sidebar.</li>
+                                <div class="card mb-3 p-3 bg-light">
+                                    <span class="badge bg-primary mb-2">Desktop</span>
+                                    <div class="ms-4">
+                                        <p>Click the “Choose File” button.</p>
+                                        <p>Select your image.</p>
+                                        <p>Click “Open.”</p>
+                                    </div>
+                                </div>
+                                <div class="card mb-3 p-3 bg-light">
+                                    <span class="badge bg-success mb-2">Mobile</span>
+                                    <div class="ms-4">
+                                        <p>Tap “Choose File.”</p>
+                                        <p>Select from your photo library, take a new photo, or choose a file.</p>
+                                        <p>Tap “Done” to confirm.</p>
+                                    </div>
+                                </div>
+                                <li>Once uploaded, a preview of the image will be displayed.</li>
+                            </ul>
                         </div>                        
+
+                        <div class="card mb-3 p-3 bg-light border border-muted rounded-3 shadow-sm">
+                            <h5><i class="bi bi-search"></i> 3. Analysing an Image</h5>
+                            <ul>
+                                <li>Click or tap the “Analyse” button below the image preview.</li>
+                                <li>Wait while the system processes the image.</li>
+                                <li>Once complete, view the analysis results along with confidence percentages for each prediction.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card mb-3 p-3 bg-light border border-muted rounded-3 shadow-sm">
+                            <h5><i class="bi bi-layout-sidebar"></i> 4. Viewing Other Pages</h5>
+                            <ul>
+                                <li>Use the sidebar to easily access other pages such as the dashboard, user guide, and FAQ page.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card mb-3 p-3 bg-light border border-muted rounded-3 shadow-sm">
+                            <h5><i class="bi bi-lightbulb"></i> 5. Tips for Optimal Use</h5>
+                            <ul>
+                                <li>Use high-quality images for the best analysis results.</li>
+                                <li>Ensure your images are in supported formats to prevent upload errors.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
