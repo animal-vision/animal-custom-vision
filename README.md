@@ -9,7 +9,6 @@
 - [Tech Stack](#tech-stack)
 - [Commit, Comment, Branch, & Pull Request Guidelines](#commit-comment-branch--pull-request-guidelines)
 - [Deployment Guide](#deployment-guide-specific-to-windows)
-- [Backing Up Changes](#to-backup-your-changes)
 - [Acknowledgements](#acknowledgements)
 
 ## Tech Stack
