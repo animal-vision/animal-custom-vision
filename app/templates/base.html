@@ -24,6 +24,27 @@
   <link rel="stylesheet" href="{{ url_for ('static', filename='assets/css/components.css') }}">
   <link rel="stylesheet" href="{{ url_for ('static', filename='assets/css/custom.css') }}">
   <!-- <link rel="stylesheet" href="{{ url_for ('static', filename='assets/css/bootstrap.min.css') }}"> -->
+
+  <!-- High Contrast Mode CSS -->
+  <style>
+    body.high-contrast {
+      background-color: black;
+      color: white;
+    }
+
+    body.high-contrast a {
+      color: yellow;
+    }
+
+    body.high-contrast .navbar, body.high-contrast .main-sidebar {
+      background-color: #333;
+    }
+
+    body.high-contrast .btn {
+      background-color: yellow;
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
@@ -38,29 +59,27 @@
         </ul>
       </form>
       <ul class="navbar-nav navbar-right">
+        <!-- High Contrast Toggle Button -->
+        <li>
+          <button id="toggle-contrast" class="btn btn-secondary">Toggle High Contrast</button>
+        </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
           <img alt="profile-picture" src="{{ url_for ('static', filename='media/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-          <div class="d-sm-none d-lg-inline-block">Hi, User</div></a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-title"></div>
-            <a href="/guide" class="dropdown-item has-icon">
-              <i class="far fa-user"></i> User Guide 
-            </a>
-            <a href="/faq" class="dropdown-item has-icon">
-              <i class="far fa-user"></i> FAQ 
-            </a>
-            <a href="/" class="dropdown-item has-icon">
-              <i class="fas fa-bolt"></i> Upload and Analyse
-            </a>
-            <!-- <a href="#" class="dropdown-item has-icon">
-              <i class="fas fa-cog"></i> Settings
-            </a> -->
-            <!-- <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item has-icon text-danger">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </a> -->
-          </div>
-        </li>
+          <div class="d-sm-none d-lg-inline-block">Hi, User</div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-title"></div>
+          <a href="/guide" class="dropdown-item has-icon">
+            <i class="far fa-user"></i> User Guide
+          </a>
+          <a href="/faq" class="dropdown-item has-icon">
+            <i class="far fa-user"></i> FAQ
+          </a>
+          <a href="/" class="dropdown-item has-icon">
+            <i class="fas fa-bolt"></i> Upload and Analyse
+          </a>
+        </div>
+      </li>
       </ul>
     </nav>
   {% endblock header %}
@@ -149,6 +168,16 @@
   <!-- Template JS File -->
   <script src="{{ url_for ('static', filename='assets/js/scripts.js') }}"></script>
   <script src="{{ url_for ('static', filename='assets/js/custom.js') }}"></script>
+
+  <!-- High Contrast Mode JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleButton = document.getElementById('toggle-contrast');
+      toggleButton.addEventListener('click', function () {
+        document.body.classList.toggle('high-contrast');
+      });
+    });
+  </script>
 
   <!-- Page Specific JS File -->
   <!-- <script src="{{ url_for ('static', filename='assets/js/page/index-0.js') }}"></script> -->

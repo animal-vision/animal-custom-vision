@@ -2,7 +2,7 @@ import os
 import requests
 from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
-from .main.routes import main # remove the dot before 'main' before running the website
+from main.routes import main # remove the dot before 'main' before running the website
 from azure.storage.blob import BlobServiceClient
 from datetime import datetime
 from urllib.parse import urlparse
