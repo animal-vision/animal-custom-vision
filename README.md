@@ -70,7 +70,18 @@ cp .env.example .env
 
 - Ensure the `.` before `main` in `.main.routes import main` is removed (app/app.py line 5)
 - Run **python app/app.py** in terminal
-- **Ctrl + Click** on the link that appears
+- **Ctrl + Click** on the link that appear
+
+## Team Roles
+
+| Name                                   | Role(s)                                |
+|----------------------------------------|-----------------------------------------|
+| [@sumayyah19](https://github.com/sumayyah19) | Project Leader, Product Owner           |
+| [@Shelly855](https://github.com/Shelly855)       | Task Manager, Scrum Master              |
+| [@JianFGO](https://github.com/JianFGO)         | Technical Lead                          |
+| [@SWE-SAM](https://github.com/SWE-SAM)            | Team Member                             |
+| [@zeolite-afk](https://github.com/zeolite-afk)    | Team Member                             |
+
 
 ## Acknowledgements
 
