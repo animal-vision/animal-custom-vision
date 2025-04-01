@@ -2,14 +2,25 @@
 
 - A web application for analysing animal behaviours using Azure Custom Vision.
 
-**Full documentation, research, and planning materials are available in the [`/docs`](./docs) folder.**
-
 ## Table of Contents
 
+- [Team Roles](#team-roles)
 - [Tech Stack](#tech-stack)
 - [Commit, Comment, Branch, & Pull Request Guidelines](#commit-comment-branch--pull-request-guidelines)
 - [Deployment Guide](#deployment-guide-specific-to-windows)
 - [Acknowledgements](#acknowledgements)
+
+**Documentation is available in the [`/docs`](./docs) folder.**
+
+## Team Roles
+
+| Name                                   | Role(s)                                |
+|----------------------------------------|-----------------------------------------|
+| [@sumayyah19](https://github.com/sumayyah19) | Project Leader, Product Owner           |
+| [@Shelly855](https://github.com/Shelly855)       | Task Manager, Scrum Master              |
+| [@JianFGO](https://github.com/JianFGO)         | Technical Lead                          |
+| [@SWE-SAM](https://github.com/SWE-SAM)            | Team Member                             |
+| [@zeolite-afk](https://github.com/zeolite-afk)    | Team Member                             |
 
 ## Tech Stack
 
@@ -71,17 +82,6 @@ cp .env.example .env
 - Ensure the `.` before `main` in `.main.routes import main` is removed (app/app.py line 5)
 - Run **python app/app.py** in terminal
 - **Ctrl + Click** on the link that appear
-
-## Team Roles
-
-| Name                                   | Role(s)                                |
-|----------------------------------------|-----------------------------------------|
-| [@sumayyah19](https://github.com/sumayyah19) | Project Leader, Product Owner           |
-| [@Shelly855](https://github.com/Shelly855)       | Task Manager, Scrum Master              |
-| [@JianFGO](https://github.com/JianFGO)         | Technical Lead                          |
-| [@SWE-SAM](https://github.com/SWE-SAM)            | Team Member                             |
-| [@zeolite-afk](https://github.com/zeolite-afk)    | Team Member                             |
-
 
 ## Acknowledgements
 
